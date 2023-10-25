@@ -1,0 +1,10 @@
+---
+- name: Get NVIDIA SMI info
+  command: nvidia-smi -q -x
+  register: nvidia_smi_output
+  changed_when: false
+
+- name: Save NVIDIA SMI info as Ansible fact
+  set_fact:
+    nvidia_smi_info: "{{ nvidia_smi_output.stdout | ansible.utils.from_xml }}"
+    cacheable: true
