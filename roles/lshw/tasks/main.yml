@@ -1,0 +1,6 @@
+---
+- name: Get GPU Information
+  community.general.command:
+    cmd: lshw -c display -json
+  become: true
+  register: lshw_results
