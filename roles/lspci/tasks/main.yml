@@ -1,0 +1,9 @@
+- name: Get PCI devices
+  command: lspci
+  changed_when: false
+  register: pci_devices
+
+- name: Set lspci fact
+  set_fact:
+    lspci: "{{ pci_devices.stdout }}"
+    cacheable: true
