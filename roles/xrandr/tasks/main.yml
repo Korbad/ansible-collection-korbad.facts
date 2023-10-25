@@ -1,0 +1,12 @@
+- include_role:
+    name: korbad.tools.get_active_user_environ
+
+- name: Get xrandr info
+  command: xrandr
+  register: xrandr_output
+  environment:
+    DISPLAY: "{{ active_user_environ_dict.DISPLAY }}"
+
+- set_fact:
+    unstructured_xrandr: "{{ xrandr_output.stdout }}"
+    cacheable: true
